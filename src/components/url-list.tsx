@@ -40,7 +40,7 @@ export default function UrlList() {
   };
 
   const handleCopyUrl = (code: string) => {
-    const fullUrl = `$(shortenerUrl(code))`;
+    const fullUrl = `${shortenerUrl(code)}`;
     navigator.clipboard.writeText(fullUrl).then(() => {
       setCopied(true);
       setCopyUrl(code);
