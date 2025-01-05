@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen ">
       <main className="relative z-10 mx-auto max-w-xl py-12 md:py-24 space-y-6 px-4">
-        <div className="space-y-2 text-center">
+        <div className="space-y-2 text-center mb-10">
           <h1 className="text-4xl md:text-6xl font-bold">Short links with superpowers</h1>
-          <p className="md:text-xl text-muted-foreground font-normal">Shorten your URLs and share them easily</p>
+          <p className="md:text-xl text-muted-foreground font-normal">Shorten your URLs. Share them easily. Monitor clicks.</p>
         </div>
         <UrlShortenerContainer />
       </main>

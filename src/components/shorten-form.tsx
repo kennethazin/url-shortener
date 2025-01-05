@@ -41,6 +41,8 @@ const [isLoading, setIsLoading] = useState<boolean>(false);
       await response.json();
       setUrl('');
       handleUrlShortened();
+      toast.success('Link shortened successfully!');
+
     } catch(error) {
       console.error('Failed to shorten URL:', error);
       toast.error('Failed to shorten URL');
