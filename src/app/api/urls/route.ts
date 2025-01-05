@@ -7,10 +7,14 @@ export async function GET() {
             orderBy: { createdAt: 'desc'},
             take: 5
         });
-        return NextResponse.json(urls)
+
+        if (urls.length === 0) {
+            return NextResponse.json({ message: 'No URLs found' }, { status: 404 });
+        }
+
+        return NextResponse.json(urls);
     } catch(error) {
         console.error('Failed to fetch URLs:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-
     }
 }
