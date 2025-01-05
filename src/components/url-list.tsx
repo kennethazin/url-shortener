@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import React from "react";
 import { Button } from "./ui/button";
-import { Check, CopyIcon, EyeIcon } from "lucide-react";
+import { Check, CopyIcon, MousePointerClick } from "lucide-react";
 import UrlListSkeleton from "./url-list-skeleton";
+import { Card } from "./ui/card";
+import { toast } from "sonner"
 
 type Url = {
   id: string;
@@ -42,6 +44,7 @@ export default function UrlList() {
     navigator.clipboard.writeText(fullUrl).then(() => {
       setCopied(true);
       setCopyUrl(code);
+      toast.success("URL has been copied to clipboard")
       setTimeout(() => {
         setCopied(false);
         setCopyUrl('');
@@ -60,36 +63,39 @@ export default function UrlList() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-2">Recent URLs</h2>
       <ul className="space-y-2">
         {urls.map((url) => (
           <li key={url.id} className="flex items-center gap-2 justify-between">
+            <Card className="w-full px-4 py-2 shadow-none flex flex-row items-center justify-between h-24">
             <Link
               href={`/${url.shortCode}`}
               target="_blank"
-              className="text-blue-600"
+              className="text-black-600 font-bold"
             >
               {shortenerUrl(url.shortCode)}
             </Link>
             <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
-                size="icon"
-                className="text-muted-foreground hover:bg-muted"
+
+                className="text-muted-foreground hover:bg-muted border  bg-zinc-50 w-8 h-8 rounded-full  "
                 onClick={() => handleCopyUrl(url.shortCode)}
               >
                 {copied && copyUrl == url.shortCode ? (
-                  <Check className="w-4 h-4" />
+                  <Check  />
                 ) : (
-                  <CopyIcon className="w-4 h-4" />
+                  <CopyIcon  />
                 )}
                 <span className="sr-only">Copy URL</span>
               </Button>
-              <span className="flex items-center">
-                <EyeIcon className="w-4 h-4 mr-1" />
-                {url.visits} Views
+              <Card className="py-1 px-2 shadow-none bg-zinc-50 rounded-md hover:bg-muted w-24" >
+              <span className="flex items-center justify-between text-muted-foreground text-sm">
+                <MousePointerClick className="w-4 h-4" />
+                {url.visits} {url.visits === 1 ? "click" : "clicks"}
               </span>
+              </Card>
             </div>
+            </Card>
           </li>
         ))}
       </ul>
