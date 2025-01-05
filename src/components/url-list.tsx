@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Button } from "./ui/button";
 import { Check, CopyIcon, EyeIcon } from "lucide-react";
-import UrlListSkeleton from "./url-list-skeleton";
 
 type Url = {
   id: string;
@@ -55,7 +54,7 @@ export default function UrlList() {
   }, []);
 
   if (isLoading) {
-    return <UrlListSkeleton />;
+    return <div>Loading</div>;
   }
 
   return (
