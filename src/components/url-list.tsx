@@ -81,7 +81,9 @@ export default function UrlList() {
                 </Link>
                 <div className="flex flex-row items-center text-gray-400 text-xs gap-1">
                   <CornerDownRight className="w-4 h-4 stroke-1 " />
-                  {url.originalUrl}
+                    {url.originalUrl.length > 10
+                    ? `${url.originalUrl.substring(0, 30)}...`
+                    : url.originalUrl}
                 </div>
               </div>
               <div className="flex items-center gap-3 flex-row sm:flex-row">
