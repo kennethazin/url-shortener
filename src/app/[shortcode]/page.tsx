@@ -28,4 +28,5 @@ export default async function RedirectPage({ params }: RedirectPageProps) {
   })
 
   redirect(url.originalUrl);
+  return null;
 }
