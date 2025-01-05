@@ -3,12 +3,12 @@ import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
 
 interface RedirectPageProps {
-  params: {
+  params: Promise<{
     shortcode: string;
-  };
+  }>;
 }
 export default async function RedirectPage({ params }: RedirectPageProps) {
-  const { shortcode } = params;
+  const { shortcode } = await params;
 
   const url = await prisma.url.findUnique({
     where: {
@@ -28,5 +28,4 @@ export default async function RedirectPage({ params }: RedirectPageProps) {
   })
 
   redirect(url.originalUrl);
-  return null;
 }
