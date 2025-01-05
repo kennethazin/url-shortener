@@ -53,7 +53,7 @@ const [isLoading, setIsLoading] = useState<boolean>(false);
 
   
   return (
-    <form onSubmit={handleSubmit} className="mb-4" noValidate>
+    <form onSubmit={handleSubmit} className="mb-4 mt-2" noValidate>
       <div className="flex flex-row space-x-2">
         <Input
           value={url}
