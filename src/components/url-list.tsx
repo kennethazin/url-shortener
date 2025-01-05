@@ -70,11 +70,11 @@ export default function UrlList() {
             <Link
               href={`/${url.shortCode}`}
               target="_blank"
-              className="text-black-600 font-bold"
+              className="text-black-600 font-medium"
             >
               {shortenerUrl(url.shortCode)}
             </Link>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-col sm:flex-row">
               <Button
                 variant="ghost"
 
