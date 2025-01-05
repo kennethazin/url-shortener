@@ -4,10 +4,15 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import React from "react";
 import { Button } from "./ui/button";
-import { Check, CopyIcon, MousePointerClick } from "lucide-react";
+import {
+  Check,
+  CopyIcon,
+  MousePointerClick,
+  CornerDownRight,
+} from "lucide-react";
 import UrlListSkeleton from "./url-list-skeleton";
 import { Card } from "./ui/card";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 type Url = {
   id: string;
@@ -19,7 +24,7 @@ type Url = {
 export default function UrlList() {
   const [urls, setUrls] = useState<Url[]>([]);
   const [copied, setCopied] = useState<boolean>(false);
-  const [copyUrl, setCopyUrl] = useState<string>('');
+  const [copyUrl, setCopyUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const shortenerUrl = (code: string) =>
@@ -44,11 +49,10 @@ export default function UrlList() {
     navigator.clipboard.writeText(fullUrl).then(() => {
       setCopied(true);
       setCopyUrl(code);
-      toast.success("URL has been copied to clipboard")
+      toast.success("URL has been copied to clipboard");
       setTimeout(() => {
         setCopied(false);
-        setCopyUrl('');
-
+        setCopyUrl("");
       }, 2000);
     });
   };
@@ -67,34 +71,39 @@ export default function UrlList() {
         {urls.map((url) => (
           <li key={url.id} className="flex items-center gap-1 justify-between ">
             <Card className="w-full px-2 py-1 md:px-4 md:py-2 shadow-none flex  items-center justify-between h-24 text-center ">
-            <Link
-              href={`/${url.shortCode}`}
-              target="_blank"
-              className="text-black-600 font-medium mb-1"
-            >
-              {shortenerUrl(url.shortCode)}
-            </Link>
-            <div className="flex items-center gap-3 flex-row sm:flex-row">
-              <Button
-                variant="ghost"
-
-                className="text-muted-foreground hover:bg-muted border  bg-zinc-50 w-8 h-8 rounded-full  "
-                onClick={() => handleCopyUrl(url.shortCode)}
-              >
-                {copied && copyUrl == url.shortCode ? (
-                  <Check  />
-                ) : (
-                  <CopyIcon  />
-                )}
-                <span className="sr-only">Copy URL</span>
-              </Button>
-              <Card className="py-1 px-1 shadow-none bg-zinc-50 rounded-md hover:bg-muted w-20 " >
-              <span className="flex items-center justify-between text-muted-foreground text-xs w-full">
-                <MousePointerClick className="w-4 h-4" />
-                {url.visits} {url.visits === 1 ? "click" : "clicks"}
-              </span>
-              </Card>
-            </div>
+              <div>
+                <Link
+                  href={`/${url.shortCode}`}
+                  target="_blank"
+                  className="text-black-600 font-bold mb-1"
+                >
+                  {shortenerUrl(url.shortCode)}
+                </Link>
+                <div className="flex flex-row items-center text-gray-400 text-xs gap-1">
+                  <CornerDownRight className="w-4 h-4 stroke-1 " />
+                  {url.originalUrl}
+                </div>
+              </div>
+              <div className="flex items-center gap-3 flex-row sm:flex-row">
+                <Button
+                  variant="ghost"
+                  className="text-muted-foreground hover:bg-muted border  bg-zinc-50 w-8 h-8 rounded-full  "
+                  onClick={() => handleCopyUrl(url.shortCode)}
+                >
+                  {copied && copyUrl == url.shortCode ? (
+                    <Check />
+                  ) : (
+                    <CopyIcon />
+                  )}
+                  <span className="sr-only">Copy URL</span>
+                </Button>
+                <Card className="py-1 px-1 shadow-none bg-zinc-50 rounded-md hover:bg-muted w-20 ">
+                  <span className="flex items-center justify-between text-muted-foreground text-xs w-full">
+                    <MousePointerClick className="w-4 h-4" />
+                    {url.visits} {url.visits === 1 ? "click" : "clicks"}
+                  </span>
+                </Card>
+              </div>
             </Card>
           </li>
         ))}
