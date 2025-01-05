@@ -65,8 +65,8 @@ export default function UrlList() {
     <div>
       <ul className="space-y-2">
         {urls.map((url) => (
-          <li key={url.id} className="flex items-center gap-2 justify-between">
-            <Card className="w-full px-4 py-2 shadow-none flex flex-row items-center justify-between h-24">
+          <li key={url.id} className="flex items-center gap-1 justify-between ">
+            <Card className="w-full px-4 py-2 shadow-none flex flex-col sm:flex-row items-center justify-between h-24">
             <Link
               href={`/${url.shortCode}`}
               target="_blank"
@@ -74,7 +74,7 @@ export default function UrlList() {
             >
               {shortenerUrl(url.shortCode)}
             </Link>
-            <div className="flex items-center gap-3 flex-col sm:flex-row">
+            <div className="flex items-center gap-3 flex-row sm:flex-row">
               <Button
                 variant="ghost"
 
@@ -88,8 +88,8 @@ export default function UrlList() {
                 )}
                 <span className="sr-only">Copy URL</span>
               </Button>
-              <Card className="py-1 px-2 shadow-none bg-zinc-50 rounded-md hover:bg-muted w-24" >
-              <span className="flex items-center justify-between text-muted-foreground text-sm">
+              <Card className="py-1 px-1 shadow-none bg-zinc-50 rounded-md hover:bg-muted w-20 " >
+              <span className="flex items-center justify-between text-muted-foreground text-xs w-full">
                 <MousePointerClick className="w-4 h-4" />
                 {url.visits} {url.visits === 1 ? "click" : "clicks"}
               </span>
