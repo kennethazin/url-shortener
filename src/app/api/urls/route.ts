@@ -8,10 +8,6 @@ export async function GET() {
             take: 5
         });
 
-        if (urls.length === 0) {
-            return NextResponse.json({ message: 'No URLs found' }, { status: 404 });
-        }
-
         return NextResponse.json(urls);
     } catch(error) {
         console.error('Failed to fetch URLs:', error);

@@ -58,10 +58,6 @@ export default function UrlList() {
     return <UrlListSkeleton />;
   }
 
-  if (urls.length === 0) {
-    return <p>No URLs have been shortened yet.</p>;
-  }
-
   return (
     <div>
       <h2 className="text-2xl font-bold mb-2">Recent URLs</h2>
