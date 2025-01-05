@@ -17,7 +17,7 @@ const handleUrlShortened = () => {
 
   return (
     <div>
-      <Card className='p-5 shadow-none bg-neutral-100 bg-opacity-40'>
+      <Card className='p-2 sm:p-5 shadow-none bg-neutral-100 bg-opacity-40'>
         <ShortenForm handleUrlShortened={handleUrlShortened}  />
         <UrlList key={refreshKey} />
         </Card>      

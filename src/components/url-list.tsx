@@ -66,11 +66,11 @@ export default function UrlList() {
       <ul className="space-y-2">
         {urls.map((url) => (
           <li key={url.id} className="flex items-center gap-1 justify-between ">
-            <Card className="w-full px-4 py-2 shadow-none flex flex-col sm:flex-row items-center justify-between h-24">
+            <Card className="w-full px-2 py-1 md:px-4 md:py-2 shadow-none flex  items-center justify-between h-24 text-center ">
             <Link
               href={`/${url.shortCode}`}
               target="_blank"
-              className="text-black-600 font-medium"
+              className="text-black-600 font-medium mb-1"
             >
               {shortenerUrl(url.shortCode)}
             </Link>
